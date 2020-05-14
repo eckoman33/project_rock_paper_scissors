@@ -43,10 +43,10 @@ function computerPlay(){
         let result = playRound();
         if(result == '1 0'){
         win++;
-        console.log(" You won this round! " + win );
+        console.log( " You won this round! " + win ), alert( " You won this round! " + win );
         }else{
         lose++;
-        console.log(" Computer wins this round! " + lose );
+        console.log(" Computer wins this round! " + lose ), alert( " Computer wins this round! " + lose  );
         }
         }
       return win > lose ? (console.log('You Win!\nCongratulations!'), alert('You Win!\nCongratulations!')) : (console.log('Computer Wins!\nGame Over'), alert('Computer Wins!\nGame Over')); 
