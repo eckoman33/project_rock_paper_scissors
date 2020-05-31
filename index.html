@@ -1,26 +1,45 @@
 <!DOCTYPE html>
-<html>
-
-
-
-
-
-
-
-
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Plumbus, Eyeholes, Terryfolds</title>
+</head>
 <body>
+    <h1>Plumbus Eyeholes Terryfolds Challenge</h1>
+    <div class="row">
+        <div>
+            <div class="score-container">
+                <h1>What You Got:</h1>
+                <div class="score" id="usr-score">0</div>
+            </div>
+        </div>
 
+        <div class="selections-container">
+            <div class="selections">
+                <img src="./assets/eyeholes.png" alt="Eyeholes" id="Eyeholes" onclick="playRound(0)">
+                <img src="./assets/terryfolds.png" alt="Terryfolds" id="Terryfolds" onclick="playRound(1)">
+                <img src="./assets/plumbus.png" alt="Plumbus" id="Plumbus" onclick="playRound(2)">
+            </div>
+        </div>
+        <div class="score-container">
+            <h1>Disqualified:</h1>
+            <div class="score" id="cpu-score">0</div>
+        </div>
+    </div>
+    <div id="round-details">
+        Show Me What You Got !
+    </div>
+    <div>
+        <ul class="legend">
+            <li><span style="background-color:black" class="dot"></span> Selected by CPU</li>
+            <li><span style="background-color:white" class="dot"></span> Selected by YOU</li>
+            <li><span style="background-color:#54FFD5" class="dot"></span> Selected by YOU and CPU</li>
+        </ul>
 
-
-
-
-
-
-
+    </div>
+    <script src="script.js"></script>
 </body>
-
-<script src="script.js">
-</script>
-
-
 </html>

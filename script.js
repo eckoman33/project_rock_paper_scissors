@@ -1,57 +1,49 @@
-function computerPlay(){
-    let arr = ['Rock', 'Paper', 'Scissors'];
-    let rand = Math.floor(Math.random() * arr.length);
-    return arr[rand];
-  }
-  function sensitiveCase(str){
-      let a = str[0].toUpperCase();
-      let b = str.substring(1).toLowerCase();
-    return a + b;
-  }
-  function playRound(playerSelection, computerSelection){
-      playerSelection = prompt(" Hi! Choose One: Rock, Paper, or Scissors. You'll be Playing Against The Computer!");
-      let a = sensitiveCase(playerSelection);
-      computerSelection = computerPlay();
-      let b = computerSelection;
-      let w = 0;
-      let l = 0;
-      if(a == b){
-      }else if(a == 'Rock' && b == 'Scissors'){
-        alert('You win! Rock beats scissors')
-        w++;
-      }else if(a == 'Paper' && b == 'Rock'){
-        alert('You win! Paper covers rock')
-        w++;
-      }else if(a == 'Scissors' && b == 'Paper'){ alert('You win! Scissors cuts paper')
-        w++;
-      }else if(b == 'Rock' && a == 'Scissors'){
-        alert('You lose! Rock beats scissors')
-        l++;
-      }else if(b == 'Paper' && a == 'Rock'){
-        alert('You lose! Paper covers rock')
-        l++;
-      }else if(b == 'Scissors' && a == 'Paper'){
-        alert('You lose! Scissors cuts paper')
-        l++;
-      }
-      return w + ' ' + l;
-  }
-  function game(){
-      let win = 0;
-      let lose = 0;  
-      while((win + lose) <= 4){
-        let result = playRound();
-        if(result == '1 0'){
-        win++;
-        console.log( " You won this round! " + win ), alert( " You won this round! " + win );
-        }else{
-        lose++;
-        console.log(" Computer wins this round! " + lose ), alert( " Computer wins this round! " + lose  );
-        }
-        }
-      return win > lose ? (console.log('You Win!\nCongratulations!'), alert('You Win!\nCongratulations!')) : (console.log('Computer Wins!\nGame Over'), alert('Computer Wins!\nGame Over')); 
-  }    
-  game();
+var choices = ["Eyeholes", "Terryfolds", "Plumbus"]
 
+var userScore = document.getElementById("usr-score")
+var cpuScore = document.getElementById("cpu-score")
+var round = document.getElementById("round-details")
 
- 
+const winningMatrix = [
+    [0, -1, 1],
+    [1, 0, -1],
+    [-1, 1, 0]
+]
+
+const computerPlay = () => Math.floor((Math.random()*3))
+
+const playRound = (playerSelection) => {
+    computerSelection = computerPlay();
+    focusOnSelection(choices[playerSelection], choices[computerSelection], winningMatrix[playerSelection][computerSelection]);
+    if(winningMatrix[playerSelection][computerSelection] == 1) {
+        round.innerHTML = ("I Like What You Got ! " + choices[playerSelection] + " beats " + choices[computerSelection])
+        userScore.innerHTML = parseInt(userScore.innerHTML) + 1;
+    }
+    else if(winningMatrix[playerSelection][computerSelection] == -1) {
+        round.innerHTML =("Disqualified ! " + choices[computerSelection] + " beats " + choices[playerSelection])
+        cpuScore.innerHTML = parseInt(cpuScore.innerHTML) + 1;
+    }
+    else {
+        userScore.innerHTML = parseInt(userScore.innerHTML) + 1;
+        cpuScore.innerHTML = parseInt(cpuScore.innerHTML) + 1;
+        round.innerHTML = ("There's One Every Season ! " + choices[computerSelection] + " - " + choices[playerSelection])
+    }
+}
+
+const focusOnSelection = (user, cpu, winner) => {
+    var selections = document.getElementsByClassName("selections")[0].children
+    for (var i = 0, len = selections.length; i < len; i++) {
+        selections[i].classList.remove("userSelected","cpuSelected","bothSelected","winner")
+    }
+    setTimeout(()=>{
+        document.getElementById(winner > 0 ? user : cpu).classList.add("winner")
+    } ,50)
+    if(user != cpu) {
+        document.getElementById(user).classList.add("userSelected")
+        document.getElementById(cpu).classList.add("cpuSelected")
+    }
+    else {
+        document.getElementById(user).classList.add("bothSelected")
+    }
+
+}
