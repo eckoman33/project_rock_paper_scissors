@@ -2,11 +2,11 @@
     box-sizing: border-box;
 }
 html {
-    background: url("./assets/rps_filler_bg.jpg") bottom center;
+    background: url("./assets/rps_background.jpg") bottom center;
     overflow: auto;
 }
 body {
-    background: url("./assets/rps_background.jpg") bottom center;
+    background: url("./assets/rps_filler_bg.jpg") top center no-repeat;
     border-radius: 5px;
     text-align: center;
     padding:5px;
